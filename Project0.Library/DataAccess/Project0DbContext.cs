@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Project0.Library.DataAccess;
 
-namespace Project0
+namespace Project0.App
 {
     public partial class Project0DbContext : DbContext
     {
@@ -36,7 +36,7 @@ namespace Project0
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.CstmId)
-                    .HasName("PK__Customer__E2758465842A7884");
+                    .HasName("PK__Customer__E2758465AA002318");
 
                 entity.Property(e => e.CstmId).HasColumnName("cstmId");
 
@@ -61,25 +61,27 @@ namespace Project0
 
             modelBuilder.Entity<OrderList>(entity =>
             {
-                entity.HasKey(e => e.LstOrderId)
-                    .HasName("PK__OrderLis__2B9E1AFBFED7BA46");
+                entity.HasNoKey();
 
-                entity.Property(e => e.LstOrderId)
-                    .HasColumnName("lstOrderId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.LstOrderId).HasColumnName("lstOrderId");
 
                 entity.Property(e => e.LstProdId).HasColumnName("lstProdId");
 
+                entity.HasOne(d => d.LstOrder)
+                    .WithMany()
+                    .HasForeignKey(d => d.LstOrderId)
+                    .HasConstraintName("FK__OrderList__lstOr__5AB9788F");
+
                 entity.HasOne(d => d.LstProd)
-                    .WithMany(p => p.OrderList)
+                    .WithMany()
                     .HasForeignKey(d => d.LstProdId)
-                    .HasConstraintName("FK__OrderList__lstPr__2645B050");
+                    .HasConstraintName("FK__OrderList__lstPr__5BAD9CC8");
             });
 
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.ProdId)
-                    .HasName("PK__Product__319F67F1CBDF2F0D");
+                    .HasName("PK__Product__319F67F1035F13EA");
 
                 entity.Property(e => e.ProdId).HasColumnName("prodId");
 
@@ -100,7 +102,7 @@ namespace Project0
             modelBuilder.Entity<ProductOrder>(entity =>
             {
                 entity.HasKey(e => e.OrderId)
-                    .HasName("PK__ProductO__DB857F46BA1AA7F3");
+                    .HasName("PK__ProductO__0809335D1C3ECFD9");
 
                 entity.Property(e => e.OrderId).HasColumnName("orderId");
 
@@ -111,30 +113,23 @@ namespace Project0
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.OrderOrdList).HasColumnName("orderOrdList");
-
                 entity.Property(e => e.OrderStrId).HasColumnName("orderStrID");
 
                 entity.HasOne(d => d.OrderCstm)
                     .WithMany(p => p.ProductOrder)
                     .HasForeignKey(d => d.OrderCstmId)
-                    .HasConstraintName("FK__ProductOr__order__29221CFB");
-
-                entity.HasOne(d => d.OrderOrdListNavigation)
-                    .WithMany(p => p.ProductOrder)
-                    .HasForeignKey(d => d.OrderOrdList)
-                    .HasConstraintName("FK__ProductOr__order__2B0A656D");
+                    .HasConstraintName("FK__ProductOr__order__56E8E7AB");
 
                 entity.HasOne(d => d.OrderStr)
                     .WithMany(p => p.ProductOrder)
                     .HasForeignKey(d => d.OrderStrId)
-                    .HasConstraintName("FK__ProductOr__order__2A164134");
+                    .HasConstraintName("FK__ProductOr__order__57DD0BE4");
             });
 
             modelBuilder.Entity<StoreInventory>(entity =>
             {
                 entity.HasKey(e => e.InvId)
-                    .HasName("PK__StoreInv__1032554081077C82");
+                    .HasName("PK__StoreInv__10325540EB24472B");
 
                 entity.Property(e => e.InvId)
                     .HasColumnName("invId")
@@ -149,18 +144,18 @@ namespace Project0
                 entity.HasOne(d => d.InvProd)
                     .WithMany(p => p.StoreInventory)
                     .HasForeignKey(d => d.InvProdId)
-                    .HasConstraintName("FK__StoreInve__invPr__2180FB33");
+                    .HasConstraintName("FK__StoreInve__invPr__5224328E");
 
                 entity.HasOne(d => d.InvStoreLocNavigation)
                     .WithMany(p => p.StoreInventory)
                     .HasForeignKey(d => d.InvStoreLoc)
-                    .HasConstraintName("FK__StoreInve__invSt__22751F6C");
+                    .HasConstraintName("FK__StoreInve__invSt__531856C7");
             });
 
             modelBuilder.Entity<StoreLocation>(entity =>
             {
                 entity.HasKey(e => e.LocId)
-                    .HasName("PK__StoreLoc__7931970BB3286B42");
+                    .HasName("PK__StoreLoc__7931970B8617413B");
 
                 entity.Property(e => e.LocId).HasColumnName("locId");
 

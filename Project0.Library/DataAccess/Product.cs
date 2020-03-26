@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Project0
+namespace Project0.App
 {
     public partial class Product
     {
         public Product()
         {
-            OrderList = new HashSet<OrderList>();
             StoreInventory = new HashSet<StoreInventory>();
         }
 
@@ -16,7 +15,6 @@ namespace Project0
         public string ProdDescription { get; set; }
         public decimal ProdPrice { get; set; }
 
-        public virtual ICollection<OrderList> OrderList { get; set; }
         public virtual ICollection<StoreInventory> StoreInventory { get; set; }
     }
 }

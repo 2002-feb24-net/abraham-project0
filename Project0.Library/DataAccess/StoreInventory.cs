@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Project0
+namespace Project0.App
 {
     public partial class StoreInventory
     {

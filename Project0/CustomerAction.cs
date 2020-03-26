@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Project0.App;
 
 namespace Project0
 {
@@ -22,33 +23,19 @@ namespace Project0
                     bool v = false;
                     while (!v)
                     {
-                        Console.WriteLine("Please enter the customer first name: ");
-                        string name = Console.ReadLine();
+                        string[] fullName = new string[2];
+                        Console.WriteLine("Please enter the customer full name: ");
+                        fullName = Console.ReadLine().Split(" ");
                         Console.WriteLine("");
-                        v = valid.IsValidString(name);
+                        v = valid.IsValidString(fullName[0] + " " + fullName[1]);
                         if (!v)
                         {
                             Console.WriteLine("You must enter the first name.");
                         }
                         else
                         {
-                            ctmrFirstName = name;
-                        }
-                    }
-                    v = false;
-                    while (!v)
-                    {
-                        Console.WriteLine("Please enter the customer last name: ");
-                        string name = Console.ReadLine();
-                        Console.WriteLine("");
-                        v = valid.IsValidString(name);
-                        if (!v)
-                        {
-                            Console.WriteLine("You must enter the last name.");
-                        }
-                        else
-                        {
-                            ctmrLastName = name;
+                            ctmrFirstName = fullName[0];
+                            ctmrLastName = fullName[1];
                         }
                     }
                     v = false;
@@ -77,6 +64,7 @@ namespace Project0
                     context.SaveChanges();
 
                     Console.WriteLine(ctmrFirstName + " " + ctmrLastName + " was added to our Database.");
+                    Console.WriteLine("");
                 }
                 else
                 {

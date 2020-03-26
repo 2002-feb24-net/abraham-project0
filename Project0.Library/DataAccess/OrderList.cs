@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Project0
+namespace Project0.App
 {
     public partial class OrderList
     {
-        public OrderList()
-        {
-            ProductOrder = new HashSet<ProductOrder>();
-        }
-
-        public int LstOrderId { get; set; }
+        public int? LstOrderId { get; set; }
         public int? LstProdId { get; set; }
 
+        public virtual ProductOrder LstOrder { get; set; }
         public virtual Product LstProd { get; set; }
-        public virtual ICollection<ProductOrder> ProductOrder { get; set; }
     }
 }
