@@ -62,5 +62,14 @@ namespace Project0.Library
             }
             return false;
         }
+
+        public bool IsValidYesNo(string b)
+        {
+            if(b == "y" || b == "n")
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

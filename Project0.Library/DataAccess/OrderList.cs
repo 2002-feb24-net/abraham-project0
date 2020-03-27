@@ -5,6 +5,7 @@ namespace Project0.App
 {
     public partial class OrderList
     {
+        public int LstId { get; set; }
         public int? LstOrderId { get; set; }
         public int? LstProdId { get; set; }
 

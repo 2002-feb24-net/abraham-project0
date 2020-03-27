@@ -61,21 +61,24 @@ namespace Project0.App
 
             modelBuilder.Entity<OrderList>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.LstId)
+                    .HasName("PK__OrderLis__E5B98E6E7F0FA421");
+
+                entity.Property(e => e.LstId).HasColumnName("lstId");
 
                 entity.Property(e => e.LstOrderId).HasColumnName("lstOrderId");
 
                 entity.Property(e => e.LstProdId).HasColumnName("lstProdId");
 
                 entity.HasOne(d => d.LstOrder)
-                    .WithMany()
+                    .WithMany(p => p.OrderList)
                     .HasForeignKey(d => d.LstOrderId)
-                    .HasConstraintName("FK__OrderList__lstOr__5AB9788F");
+                    .HasConstraintName("FK__OrderList__lstOr__5E8A0973");
 
                 entity.HasOne(d => d.LstProd)
-                    .WithMany()
+                    .WithMany(p => p.OrderList)
                     .HasForeignKey(d => d.LstProdId)
-                    .HasConstraintName("FK__OrderList__lstPr__5BAD9CC8");
+                    .HasConstraintName("FK__OrderList__lstPr__5F7E2DAC");
             });
 
             modelBuilder.Entity<Product>(entity =>

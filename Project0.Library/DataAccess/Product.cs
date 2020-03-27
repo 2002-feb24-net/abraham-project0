@@ -7,6 +7,7 @@ namespace Project0.App
     {
         public Product()
         {
+            OrderList = new HashSet<OrderList>();
             StoreInventory = new HashSet<StoreInventory>();
         }
 
@@ -15,6 +16,7 @@ namespace Project0.App
         public string ProdDescription { get; set; }
         public decimal ProdPrice { get; set; }
 
+        public virtual ICollection<OrderList> OrderList { get; set; }
         public virtual ICollection<StoreInventory> StoreInventory { get; set; }
     }
 }
