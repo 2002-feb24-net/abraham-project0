@@ -193,6 +193,8 @@ namespace Project0
                 context.SaveChanges();
                 Console.WriteLine("Your Order has successfully been placed! Thank you!");
             }
+            Console.WriteLine("");
+
         }
 
         public void DisplayAnOrder()

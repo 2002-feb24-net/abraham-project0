@@ -100,6 +100,7 @@ namespace Project0
                             {
                                 Console.WriteLine(fullName[0] + " " + fullName[1] + " is not a customer.");
                             }
+                            Console.WriteLine("");
                         }
                     }
                 }
