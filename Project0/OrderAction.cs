@@ -72,20 +72,34 @@ namespace Project0
                 int storeId = 0;
                 var store = from s in context.StoreLocation
                             select s;
-
-                Console.WriteLine("Location ID---Street-------------------City----------------Country");
-                foreach (var l in store)
+                v = false;
+                while (!v)
                 {
-                    string i = "--[ " + l.LocId.ToString() + " ]----------------------------------------------------";
-                    string s = l.LocStreet + "-------------------------------------------------------------";
-                    string c = l.LocCity + "------------------------------------------------------";
-                    string u = l.LocCountry;
-                    Console.WriteLine(i.Substring(0, 14) + s.Substring(0, 25) + c.Substring(0, 20) + u);
-                }
-                Console.WriteLine("");
+                    Console.WriteLine("Location ID---Street-------------------City----------------Country");
+                    foreach (var l in store)
+                    {
+                        string i = "--[ " + l.LocId.ToString() + " ]----------------------------------------------------";
+                        string s = l.LocStreet + "-------------------------------------------------------------";
+                        string c = l.LocCity + "------------------------------------------------------";
+                        string u = l.LocCountry;
+                        Console.WriteLine(i.Substring(0, 14) + s.Substring(0, 25) + c.Substring(0, 20) + u);
+                    }
+                    Console.WriteLine("");
 
-                Console.WriteLine("Please select a store to have order delivered: ");
-                storeId = Int32.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Please select a store to have order delivered: ");
+                    string input = Console.ReadLine();
+                    if (!int.TryParse(input, out int num))
+                    {
+                        Console.WriteLine("Please enter numeric values only.");
+                        v = false;
+                    }
+                    else
+                    {
+                        storeId = num;
+                        v = true;
+                    }
+                }
                 Console.WriteLine("");
                 v = false;
                 while(!v)
